@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sha & Ana</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Inter',sans-serif;
+background:linear-gradient(135deg,#0f0f0f,#1c1c1c);
+color:#f5f5f5;
+overflow-x:hidden;
+}
+
+.lock{
+position:fixed;
+width:100%;
+height:100%;
+background:#111;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:10;
+}
+
+input{
+padding:12px 20px;
+border-radius:30px;
+border:none;
+outline:none;
+margin-top:10px;
+}
+
+button{
+padding:12px 35px;
+border-radius:50px;
+border:1px solid rgba(255,255,255,0.2);
+background:transparent;
+color:white;
+cursor:pointer;
+transition:0.3s;
+margin-top:20px;
+}
+
+button:hover{
+background:white;
+color:black;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:80px 20px;
+display:none;
+}
+
+.envelope{
+width:220px;
+height:150px;
+background:#fff;
+margin:120px auto;
+position:relative;
+cursor:pointer;
+border-radius:10px;
+}
+
+.envelope:before{
+content:'';
+position:absolute;
+top:-75px;
+left:0;
+border-left:110px solid transparent;
+border-right:110px solid transparent;
+border-bottom:75px solid #fff;
+}
+
+h1{
+font-family:'Playfair Display',serif;
+text-align:center;
+margin-bottom:50px;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
+padding:30px;
+border-radius:20px;
+margin-bottom:25px;
+border:1px solid rgba(255,255,255,0.08);
+opacity:0;
+transform:translateY(30px);
+transition:0.6s ease;
+}
+
+.card.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.counter{
+text-align:center;
+margin-top:40px;
+opacity:0.7;
+}
+
+#proposal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#0f0f0f;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-size:30px;
+display:none;
+text-align:center;
+}
+
+</style>
+</head>
+<body>
+
+<div class="lock" id="lock">
+<h2>Enter Our Password 💕</h2>
+<input type="password" id="pass">
+<button onclick="unlock()">Unlock</button>
+</div>
+
+<div class="container" id="main">
+
+<div class="envelope" onclick="openLetter()" id="env"></div>
+
+<div id="letter" style="display:none;">
+
+<h1>For My Ana ❤️</h1>
+
+<div class="card">Meri pyari si Ana ❤️  
+Pta hai, kbhi kbhi sochta hu ki meri life itni beautiful kaise ho gayi… phir yaad aata hai ki usme meri laddu aa gayi 🥺  
+Tu sirf meri wife nahi hai, tu meri smile ka reason hai, meri har subah ka first thought hai, aur meri har raat ka last feeling hai.</div>
+
+<div class="card">Meri guddu, jab tu hasti h na… sch me lagta hai duniya thodi si aur pinkish and cutishhh ho gayi.  
+Tera kch bhi bolna, tera nakhre dikhana, tera bina wajah cute banna — sab kuch itna accha lgta h na ki main kabhi explain hi nahi kar paunga babu.</div>
+
+<div class="card">Aur meri pglu, tu itni innocent hai na kabhi kabhi ki bas dil karta hai tujhe tight hug karke bolu “meri hi rehna hamesha” 🫂❤️  
+Aur hmesa rhna hi pdega smjhiii 🥹</div>
+
+<div class="card">Mera chhota sa baccha, tujhe pta bhi hai tu kitni special hai?  
+Tu meri strength bhi hai aur meri weakness bhi.  
+Jab tu khush hoti hai na, mujhe lagta hai maine duniya jeet li.  
+Aur jab tu thodi si sad hoti hai, mera dil literally heavy ho jata hai.</div>
+
+<div class="card">Meri shona, I promise na, main hamesha tere saath rahunga — tere har mood me, har phase me, har problem me.  
+Chahe tu gussa kre, chahe tu roye, chahe tu bas chup ho jaaye… main tere paas hi rahunga.</div>
+
+<div class="card">Aur meri Riya, tu meri life ka sabse beautiful chapter hai.  
+Main har din thankful hu ki tu meri hai.  
+Tere bina sab kuch adhoora sa lagta hai.  
+And this chapter will always be continued till this janam and every other janam love.</div>
+
+<div class="card">Meri sweet si Rose 🌹  
+Tu meri zindagi ki khushbu hai.  
+Jaise rose bina garden adhoora lagta hai, waise hi tu bina meri life adhoori hai.  
+Chhoti chhoti fights ho, phir hm ek dusre ko mana le, phir aur zyada pyaar ho.</div>
+
+<div class="card">Ana, main tujhe sirf pyaar nahi karta…  
+Main tujhe feel karta hu, respect karta hu, cherish karta hu.  
+Tu meri aadat ban chuki hai, meri sukoon hai, mera ghar h yrr.  
+<br><br>
+I love you meri laddu, meri guddu, meri pglu, meri baccha, meri shona, meri riya, meri rose…  
+Bas meri hi rehna hamesha ❤️  
+<br><br>
+– Tumhara Sha 💌</div>
+
+<div class="counter" id="counter"></div>
+
+<button onclick="openProposal()">Stay With Me Forever</button>
+
+</div>
+</div>
+
+<div id="proposal">
+Forever Sha ❤️ Ana  
+<br><br>
+Since 13 May 2021  
+<br><br>
+And Always.
+</div>
+
+<script>
+
+function unlock(){
+if(document.getElementById("pass").value==="ana123"){
+document.getElementById("lock").style.display="none";
+document.getElementById("main").style.display="block";
+}
+}
+
+function openLetter(){
+document.getElementById("env").style.display="none";
+document.getElementById("letter").style.display="block";
+let cards=document.querySelectorAll('.card');
+cards.forEach((card,i)=>{
+setTimeout(()=>{card.classList.add('show');},i*500);
+});
+startCounter();
+}
+
+function startCounter(){
+let start=new Date("May 13, 2021 00:00:00").getTime();
+setInterval(()=>{
+let now=new Date().getTime();
+let diff=now-start;
+let days=Math.floor(diff/(1000*60*60*24));
+document.getElementById("counter").innerHTML=
+"In love for "+days+" days ❤️";
+},1000);
+}
+
+function openProposal(){
+document.getElementById("proposal").style.display="flex";
+}
+
+</script>
+
+</body>
+</html>
